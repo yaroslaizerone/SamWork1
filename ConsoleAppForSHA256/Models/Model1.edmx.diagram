@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8f7bc282dd6549e6862c496f8cb46b2d" Name="Diagram1">
+        <EntityTypeShape EntityType="ShoesFactoryModel.Change" Width="1.5" PointX="9.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.Feedback" Width="1.5" PointX="10.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.Group" Width="1.5" PointX="7.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.Material" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.MaterialApplication" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.Model" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.Order" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.OrderList" Width="1.5" PointX="7.5" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.Pattern" Width="1.5" PointX="7.5" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.Post" Width="1.5" PointX="12" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.ProductionCosts" Width="1.5" PointX="7.5" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.RecyclingCompany" Width="1.5" PointX="7.5" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.Size" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.SizeTable" Width="1.5" PointX="10.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.Structure" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.SupplierCompani" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.TypeFB" Width="1.5" PointX="8.25" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.User" Width="1.5" PointX="9.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.WasteRequest" Width="1.5" PointX="9.75" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesFactoryModel.Wastes" Width="1.5" PointX="7.5" PointY="20.5" IsExpanded="true" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_Change_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_Change_Pattern" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_Feedback_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_Feedback_TypeFB" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_User_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_MaterialApplication_Material" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_Structure_Material" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_MaterialApplication_SupplierCompani" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_Model_Structure" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_OrderList_Model" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_Pattern_Model" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_ProductionCosts_Model" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_SizeTable_Model" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_Wastes_Model" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_OrderList_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_Post_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_WasteRequest_RecyclingCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_SizeTable_Size" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesFactoryModel.FK_WasteRequest_Wastes" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
