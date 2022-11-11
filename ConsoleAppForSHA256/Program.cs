@@ -116,7 +116,7 @@ namespace ConsoleAppForSHA256
                 string target = "";
                 Regex regex = new Regex(pattern);
                 phNumber = "+" + regex.Replace(phNumber, target);
-                Console.WriteLine(phNumber);
+                Console.WriteLine((phNumber.Length));
                 while(phNumber.Length < 12 || phNumber.Length > 12)
                 {
                     Console.Write("Неверный ввод телефонного номера, введите завново: ");
