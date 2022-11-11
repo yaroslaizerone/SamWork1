@@ -15,11 +15,11 @@ namespace ConsoleAppForSHA256.Models
     public partial class Change
     {
         public int ID_Change { get; set; }
-        public Nullable<int> ID_Patern { get; set; }
-        public Nullable<int> ID_Group { get; set; }
+        public int ID_Patern { get; set; }
+        public int ID_Group { get; set; }
         public Nullable<int> NumWorkshop { get; set; }
         public Nullable<int> QuantityShoes { get; set; }
-        public Nullable<System.DateTime> DateChange { get; set; }
+        public System.DateTime DateChange { get; set; }
     
         public virtual Group Group { get; set; }
         public virtual Pattern Pattern { get; set; }

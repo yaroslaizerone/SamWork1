@@ -15,22 +15,53 @@ namespace ConsoleAppForSHA256
             }
             return sFirstDBEntities;
         }
+        public void CreateStaff(Models.Staff staff)
+        {
+            sFirstDBEntities.Staff.Add(staff);
+            sFirstDBEntities.SaveChanges();
+        }
         public void CreateUser(Models.User user)
         {
             sFirstDBEntities.User.Add(user);
             sFirstDBEntities.SaveChanges();
         }
-        public int GetLastID()
+        public int GetLastIDstaff()
         {
             int id = 0;
             try
             {
-                id = sFirstDBEntities.User.OrderByDescending(user => user.ID_User).First().ID_User;
+                id = sFirstDBEntities.Staff.OrderByDescending(staff => staff.ID_Staff).First().ID_Staff;
                 return id+1;
             }
             catch
             {
                 return id+1;
+            }
+        }
+        public int GetLastIDGroup()
+        {
+            int id = 0;
+            try
+            {
+                id = sFirstDBEntities.Group.OrderByDescending(group => group.ID_Group).First().ID_Group;
+                return id + 1;
+            }
+            catch
+            {
+                return id + 1;
+            }
+        }
+        public int GetLastIDUser()
+        {
+            int id = 0;
+            try
+            {
+                id = sFirstDBEntities.User.OrderByDescending(user => user.ID_User).First().ID_User;
+                return id + 1;
+            }
+            catch
+            {
+                return id + 1;
             }
         }
         public void UpdateUser(Models.User user)
@@ -46,11 +77,11 @@ namespace ConsoleAppForSHA256
         }
         public void FiltrUser()
         {
-            var user = sFirstDBEntities.User.Where(x => x.Name.StartsWith("M") || x.Name.StartsWith("A"));
+            var user = sFirstDBEntities.Staff.Where(x => x.Name.StartsWith("M") || x.Name.StartsWith("A"));
         }
         public void SortUser()
         {
-            var user = sFirstDBEntities.User.OrderBy(x => x.Name);
+            var user = sFirstDBEntities.Staff.OrderBy(x => x.Name);
         }
     }
 }

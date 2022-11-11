@@ -19,7 +19,7 @@ namespace ConsoleAppForSHA256.Models
         {
             this.OrderList = new HashSet<OrderList>();
             this.Pattern = new HashSet<Pattern>();
-            this.ProductionCosts = new HashSet<ProductionCosts>();
+            this.ProductionCost = new HashSet<ProductionCost>();
             this.SizeTable = new HashSet<SizeTable>();
             this.Wastes = new HashSet<Wastes>();
         }
@@ -39,7 +39,7 @@ namespace ConsoleAppForSHA256.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pattern> Pattern { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductionCosts> ProductionCosts { get; set; }
+        public virtual ICollection<ProductionCost> ProductionCost { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SizeTable> SizeTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

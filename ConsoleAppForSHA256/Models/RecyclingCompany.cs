@@ -22,8 +22,8 @@ namespace ConsoleAppForSHA256.Models
     
         public int ID_RecyclingCompany { get; set; }
         public string Name { get; set; }
-        public int DefectiveCost { get; set; }
-        public int WasteCost { get; set; }
+        public decimal DefectiveCost { get; set; }
+        public decimal WasteCost { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WasteRequest> WasteRequest { get; set; }

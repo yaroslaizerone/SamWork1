@@ -15,9 +15,9 @@ namespace ConsoleAppForSHA256.Models
     public partial class Post
     {
         public int ID_Post { get; set; }
-        public int ID_User { get; set; }
+        public int ID_Staff { get; set; }
         public string Name { get; set; }
     
-        public virtual User User { get; set; }
+        public virtual Staff Staff { get; set; }
     }
 }

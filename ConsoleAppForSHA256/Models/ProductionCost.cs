@@ -12,13 +12,13 @@ namespace ConsoleAppForSHA256.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductionCosts
+    public partial class ProductionCost
     {
         public int ID_ProductionCosts { get; set; }
         public int ID_Model { get; set; }
-        public long SelfCostModel { get; set; }
-        public long ProductionCost { get; set; }
-        public Nullable<int> SellCost { get; set; }
+        public decimal SelfCostModel { get; set; }
+        public decimal ProductionCost1 { get; set; }
+        public Nullable<decimal> SellCost { get; set; }
     
         public virtual Model Model { get; set; }
     }

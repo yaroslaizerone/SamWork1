@@ -10,11 +10,11 @@
             <PropertyRef Name="ID_Change" />
           </Key>
           <Property Name="ID_Change" Type="int" Nullable="false" />
-          <Property Name="ID_Patern" Type="int" />
-          <Property Name="ID_Group" Type="int" />
+          <Property Name="ID_Patern" Type="int" Nullable="false" />
+          <Property Name="ID_Group" Type="int" Nullable="false" />
           <Property Name="NumWorkshop" Type="int" />
           <Property Name="QuantityShoes" Type="int" />
-          <Property Name="DateChange" Type="date" />
+          <Property Name="DateChange" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Feedback">
           <Key>
@@ -95,18 +95,18 @@
             <PropertyRef Name="ID_Post" />
           </Key>
           <Property Name="ID_Post" Type="int" Nullable="false" />
-          <Property Name="ID_User" Type="int" Nullable="false" />
+          <Property Name="ID_Staff" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="ProductionCosts">
+        <EntityType Name="ProductionCost">
           <Key>
             <PropertyRef Name="ID_ProductionCosts" />
           </Key>
           <Property Name="ID_ProductionCosts" Type="int" Nullable="false" />
           <Property Name="ID_Model" Type="int" Nullable="false" />
-          <Property Name="SelfCostModel" Type="bigint" Nullable="false" />
-          <Property Name="ProductionCost" Type="bigint" Nullable="false" />
-          <Property Name="SellCost" Type="int" />
+          <Property Name="SelfCostModel" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ProductionCost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SellCost" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="RecyclingCompany">
           <Key>
@@ -114,8 +114,8 @@
           </Key>
           <Property Name="ID_RecyclingCompany" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="DefectiveCost" Type="int" Nullable="false" />
-          <Property Name="WasteCost" Type="int" Nullable="false" />
+          <Property Name="DefectiveCost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="WasteCost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="Size">
           <Key>
@@ -134,6 +134,18 @@
           <Property Name="ID_SizeTable" Type="int" Nullable="false" />
           <Property Name="ID_Size" Type="int" Nullable="false" />
           <Property Name="ID_Model" Type="int" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="ID_Staff" />
+          </Key>
+          <Property Name="ID_Staff" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="ID_Group" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Structure">
           <Key>
@@ -175,13 +187,8 @@
           <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="text" Nullable="false" />
           <Property Name="E_mail" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Patronymic" Type="varchar" MaxLength="50" />
-          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
-          <Property Name="DateOfBirth" Type="date" />
-          <Property Name="Сonfirmed" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ID_Group" Type="int" />
+          <Property Name="Сonfirmed" Type="char" MaxLength="1" />
+          <Property Name="ID_Staff" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="WasteRequest">
           <Key>
@@ -202,7 +209,7 @@
           <Property Name="QuantityMarriage" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Change_Group">
-          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
           <End Role="Change" Type="Self.Change" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Group">
@@ -214,7 +221,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Change_Pattern">
-          <End Role="Pattern" Type="Self.Pattern" Multiplicity="0..1" />
+          <End Role="Pattern" Type="Self.Pattern" Multiplicity="1" />
           <End Role="Change" Type="Self.Change" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Pattern">
@@ -321,26 +328,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Post_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Post_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
           <End Role="Post" Type="Self.Post" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID_User" />
+            <Principal Role="Staff">
+              <PropertyRef Name="ID_Staff" />
             </Principal>
             <Dependent Role="Post">
-              <PropertyRef Name="ID_User" />
+              <PropertyRef Name="ID_Staff" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductionCosts_Model">
           <End Role="Model" Type="Self.Model" Multiplicity="1" />
-          <End Role="ProductionCosts" Type="Self.ProductionCosts" Multiplicity="*" />
+          <End Role="ProductionCost" Type="Self.ProductionCost" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Model">
               <PropertyRef Name="ID_Model" />
             </Principal>
-            <Dependent Role="ProductionCosts">
+            <Dependent Role="ProductionCost">
               <PropertyRef Name="ID_Model" />
             </Dependent>
           </ReferentialConstraint>
@@ -369,6 +376,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Staff_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID_Group" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="ID_Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Structure_Material">
           <End Role="Material" Type="Self.Material" Multiplicity="1" />
           <End Role="Structure" Type="Self.Structure" Multiplicity="*" />
@@ -381,15 +400,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_Group">
-          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+        <Association Name="FK_User_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Group">
-              <PropertyRef Name="ID_Group" />
+            <Principal Role="Staff">
+              <PropertyRef Name="ID_Staff" />
             </Principal>
             <Dependent Role="User">
-              <PropertyRef Name="ID_Group" />
+              <PropertyRef Name="ID_Staff" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -440,10 +459,11 @@
           <EntitySet Name="OrderList" EntityType="Self.OrderList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pattern" EntityType="Self.Pattern" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProductionCosts" EntityType="Self.ProductionCosts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductionCost" EntityType="Self.ProductionCost" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RecyclingCompany" EntityType="Self.RecyclingCompany" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SizeTable" EntityType="Self.SizeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Structure" EntityType="Self.Structure" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SupplierCompani" EntityType="Self.SupplierCompani" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -491,13 +511,13 @@
             <End Role="Model" EntitySet="Model" />
             <End Role="Pattern" EntitySet="Pattern" />
           </AssociationSet>
-          <AssociationSet Name="FK_Post_User" Association="Self.FK_Post_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Post_Staff" Association="Self.FK_Post_Staff">
+            <End Role="Staff" EntitySet="Staff" />
             <End Role="Post" EntitySet="Post" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductionCosts_Model" Association="Self.FK_ProductionCosts_Model">
             <End Role="Model" EntitySet="Model" />
-            <End Role="ProductionCosts" EntitySet="ProductionCosts" />
+            <End Role="ProductionCost" EntitySet="ProductionCost" />
           </AssociationSet>
           <AssociationSet Name="FK_SizeTable_Model" Association="Self.FK_SizeTable_Model">
             <End Role="Model" EntitySet="Model" />
@@ -507,12 +527,16 @@
             <End Role="Size" EntitySet="Size" />
             <End Role="SizeTable" EntitySet="SizeTable" />
           </AssociationSet>
+          <AssociationSet Name="FK_Staff_Group" Association="Self.FK_Staff_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
           <AssociationSet Name="FK_Structure_Material" Association="Self.FK_Structure_Material">
             <End Role="Material" EntitySet="Material" />
             <End Role="Structure" EntitySet="Structure" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_Group" Association="Self.FK_User_Group">
-            <End Role="Group" EntitySet="Group" />
+          <AssociationSet Name="FK_User_Staff" Association="Self.FK_User_Staff">
+            <End Role="Staff" EntitySet="Staff" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
           <AssociationSet Name="FK_WasteRequest_RecyclingCompany" Association="Self.FK_WasteRequest_RecyclingCompany">
@@ -538,11 +562,11 @@
             <PropertyRef Name="ID_Change" />
           </Key>
           <Property Name="ID_Change" Type="Int32" Nullable="false" />
-          <Property Name="ID_Patern" Type="Int32" />
-          <Property Name="ID_Group" Type="Int32" />
+          <Property Name="ID_Patern" Type="Int32" Nullable="false" />
+          <Property Name="ID_Group" Type="Int32" Nullable="false" />
           <Property Name="NumWorkshop" Type="Int32" />
           <Property Name="QuantityShoes" Type="Int32" />
-          <Property Name="DateChange" Type="DateTime" Precision="0" />
+          <Property Name="DateChange" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Group" Relationship="Self.FK_Change_Group" FromRole="Change" ToRole="Group" />
           <NavigationProperty Name="Pattern" Relationship="Self.FK_Change_Pattern" FromRole="Change" ToRole="Pattern" />
         </EntityType>
@@ -566,7 +590,7 @@
           <Property Name="ID_Group" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Change" Relationship="Self.FK_Change_Group" FromRole="Group" ToRole="Change" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_Group" FromRole="Group" ToRole="User" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Staff_Group" FromRole="Group" ToRole="Staff" />
         </EntityType>
         <EntityType Name="Material">
           <Key>
@@ -604,7 +628,7 @@
           <NavigationProperty Name="Structure" Relationship="Self.FK_Model_Structure" FromRole="Model" ToRole="Structure" />
           <NavigationProperty Name="OrderList" Relationship="Self.FK_OrderList_Model" FromRole="Model" ToRole="OrderList" />
           <NavigationProperty Name="Pattern" Relationship="Self.FK_Pattern_Model" FromRole="Model" ToRole="Pattern" />
-          <NavigationProperty Name="ProductionCosts" Relationship="Self.FK_ProductionCosts_Model" FromRole="Model" ToRole="ProductionCosts" />
+          <NavigationProperty Name="ProductionCost" Relationship="Self.FK_ProductionCosts_Model" FromRole="Model" ToRole="ProductionCost" />
           <NavigationProperty Name="SizeTable" Relationship="Self.FK_SizeTable_Model" FromRole="Model" ToRole="SizeTable" />
           <NavigationProperty Name="Wastes" Relationship="Self.FK_Wastes_Model" FromRole="Model" ToRole="Wastes" />
         </EntityType>
@@ -645,20 +669,20 @@
             <PropertyRef Name="ID_Post" />
           </Key>
           <Property Name="ID_Post" Type="Int32" Nullable="false" />
-          <Property Name="ID_User" Type="Int32" Nullable="false" />
+          <Property Name="ID_Staff" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Post_User" FromRole="Post" ToRole="User" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Post_Staff" FromRole="Post" ToRole="Staff" />
         </EntityType>
-        <EntityType Name="ProductionCosts">
+        <EntityType Name="ProductionCost">
           <Key>
             <PropertyRef Name="ID_ProductionCosts" />
           </Key>
           <Property Name="ID_ProductionCosts" Type="Int32" Nullable="false" />
           <Property Name="ID_Model" Type="Int32" Nullable="false" />
-          <Property Name="SelfCostModel" Type="Int64" Nullable="false" />
-          <Property Name="ProductionCost" Type="Int64" Nullable="false" />
-          <Property Name="SellCost" Type="Int32" />
-          <NavigationProperty Name="Model" Relationship="Self.FK_ProductionCosts_Model" FromRole="ProductionCosts" ToRole="Model" />
+          <Property Name="SelfCostModel" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ProductionCost1" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SellCost" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Model" Relationship="Self.FK_ProductionCosts_Model" FromRole="ProductionCost" ToRole="Model" />
         </EntityType>
         <EntityType Name="RecyclingCompany">
           <Key>
@@ -666,8 +690,8 @@
           </Key>
           <Property Name="ID_RecyclingCompany" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DefectiveCost" Type="Int32" Nullable="false" />
-          <Property Name="WasteCost" Type="Int32" Nullable="false" />
+          <Property Name="DefectiveCost" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="WasteCost" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <NavigationProperty Name="WasteRequest" Relationship="Self.FK_WasteRequest_RecyclingCompany" FromRole="RecyclingCompany" ToRole="WasteRequest" />
         </EntityType>
         <EntityType Name="Size">
@@ -690,6 +714,21 @@
           <Property Name="ID_Model" Type="Int32" />
           <NavigationProperty Name="Model" Relationship="Self.FK_SizeTable_Model" FromRole="SizeTable" ToRole="Model" />
           <NavigationProperty Name="Size" Relationship="Self.FK_SizeTable_Size" FromRole="SizeTable" ToRole="Size" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="ID_Staff" />
+          </Key>
+          <Property Name="ID_Staff" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="ID_Group" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_Staff_Group" FromRole="Staff" ToRole="Group" />
+          <NavigationProperty Name="Post" Relationship="Self.FK_Post_Staff" FromRole="Staff" ToRole="Post" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Staff" FromRole="Staff" ToRole="User" />
         </EntityType>
         <EntityType Name="Structure">
           <Key>
@@ -735,15 +774,9 @@
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="E_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
-          <Property Name="Сonfirmed" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ID_Group" Type="Int32" />
-          <NavigationProperty Name="Group" Relationship="Self.FK_User_Group" FromRole="User" ToRole="Group" />
-          <NavigationProperty Name="Post" Relationship="Self.FK_Post_User" FromRole="User" ToRole="Post" />
+          <Property Name="Сonfirmed" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ID_Staff" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_User_Staff" FromRole="User" ToRole="Staff" />
         </EntityType>
         <EntityType Name="WasteRequest">
           <Key>
@@ -768,7 +801,7 @@
           <NavigationProperty Name="WasteRequest" Relationship="Self.FK_WasteRequest_Wastes" FromRole="Wastes" ToRole="WasteRequest" />
         </EntityType>
         <Association Name="FK_Change_Group">
-          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
           <End Role="Change" Type="Self.Change" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Group">
@@ -780,7 +813,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Change_Pattern">
-          <End Role="Pattern" Type="Self.Pattern" Multiplicity="0..1" />
+          <End Role="Pattern" Type="Self.Pattern" Multiplicity="1" />
           <End Role="Change" Type="Self.Change" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Pattern">
@@ -815,14 +848,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_Group">
-          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
+        <Association Name="FK_Staff_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Group">
               <PropertyRef Name="ID_Group" />
             </Principal>
-            <Dependent Role="User">
+            <Dependent Role="Staff">
               <PropertyRef Name="ID_Group" />
             </Dependent>
           </ReferentialConstraint>
@@ -901,12 +934,12 @@
         </Association>
         <Association Name="FK_ProductionCosts_Model">
           <End Role="Model" Type="Self.Model" Multiplicity="1" />
-          <End Role="ProductionCosts" Type="Self.ProductionCosts" Multiplicity="*" />
+          <End Role="ProductionCost" Type="Self.ProductionCost" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Model">
               <PropertyRef Name="ID_Model" />
             </Principal>
-            <Dependent Role="ProductionCosts">
+            <Dependent Role="ProductionCost">
               <PropertyRef Name="ID_Model" />
             </Dependent>
           </ReferentialConstraint>
@@ -947,15 +980,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Post_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Post_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
           <End Role="Post" Type="Self.Post" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID_User" />
+            <Principal Role="Staff">
+              <PropertyRef Name="ID_Staff" />
             </Principal>
             <Dependent Role="Post">
-              <PropertyRef Name="ID_User" />
+              <PropertyRef Name="ID_Staff" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -983,6 +1016,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID_Staff" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ID_Staff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_WasteRequest_Wastes">
           <End Role="Wastes" Type="Self.Wastes" Multiplicity="1" />
           <End Role="WasteRequest" Type="Self.WasteRequest" Multiplicity="*" />
@@ -1006,10 +1051,11 @@
           <EntitySet Name="OrderList" EntityType="Self.OrderList" />
           <EntitySet Name="Pattern" EntityType="Self.Pattern" />
           <EntitySet Name="Post" EntityType="Self.Post" />
-          <EntitySet Name="ProductionCosts" EntityType="Self.ProductionCosts" />
+          <EntitySet Name="ProductionCost" EntityType="Self.ProductionCost" />
           <EntitySet Name="RecyclingCompany" EntityType="Self.RecyclingCompany" />
           <EntitySet Name="Size" EntityType="Self.Size" />
           <EntitySet Name="SizeTable" EntityType="Self.SizeTable" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" />
           <EntitySet Name="Structure" EntityType="Self.Structure" />
           <EntitySet Name="SupplierCompani" EntityType="Self.SupplierCompani" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
@@ -1033,9 +1079,9 @@
             <End Role="TypeFB" EntitySet="TypeFB" />
             <End Role="Feedback" EntitySet="Feedback" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_Group" Association="Self.FK_User_Group">
+          <AssociationSet Name="FK_Staff_Group" Association="Self.FK_Staff_Group">
             <End Role="Group" EntitySet="Group" />
-            <End Role="User" EntitySet="User" />
+            <End Role="Staff" EntitySet="Staff" />
           </AssociationSet>
           <AssociationSet Name="FK_MaterialApplication_Material" Association="Self.FK_MaterialApplication_Material">
             <End Role="Material" EntitySet="Material" />
@@ -1063,7 +1109,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_ProductionCosts_Model" Association="Self.FK_ProductionCosts_Model">
             <End Role="Model" EntitySet="Model" />
-            <End Role="ProductionCosts" EntitySet="ProductionCosts" />
+            <End Role="ProductionCost" EntitySet="ProductionCost" />
           </AssociationSet>
           <AssociationSet Name="FK_SizeTable_Model" Association="Self.FK_SizeTable_Model">
             <End Role="Model" EntitySet="Model" />
@@ -1077,8 +1123,8 @@
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderList" EntitySet="OrderList" />
           </AssociationSet>
-          <AssociationSet Name="FK_Post_User" Association="Self.FK_Post_User">
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Post_Staff" Association="Self.FK_Post_Staff">
+            <End Role="Staff" EntitySet="Staff" />
             <End Role="Post" EntitySet="Post" />
           </AssociationSet>
           <AssociationSet Name="FK_WasteRequest_RecyclingCompany" Association="Self.FK_WasteRequest_RecyclingCompany">
@@ -1088,6 +1134,10 @@
           <AssociationSet Name="FK_SizeTable_Size" Association="Self.FK_SizeTable_Size">
             <End Role="Size" EntitySet="Size" />
             <End Role="SizeTable" EntitySet="SizeTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Staff" Association="Self.FK_User_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
           <AssociationSet Name="FK_WasteRequest_Wastes" Association="Self.FK_WasteRequest_Wastes">
             <End Role="Wastes" EntitySet="Wastes" />
@@ -1198,18 +1248,18 @@
             <EntityTypeMapping TypeName="ShoesFactoryModel.Post">
               <MappingFragment StoreEntitySet="Post">
                 <ScalarProperty Name="ID_Post" ColumnName="ID_Post" />
-                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="ID_Staff" ColumnName="ID_Staff" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProductionCosts">
-            <EntityTypeMapping TypeName="ShoesFactoryModel.ProductionCosts">
-              <MappingFragment StoreEntitySet="ProductionCosts">
+          <EntitySetMapping Name="ProductionCost">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.ProductionCost">
+              <MappingFragment StoreEntitySet="ProductionCost">
                 <ScalarProperty Name="ID_ProductionCosts" ColumnName="ID_ProductionCosts" />
                 <ScalarProperty Name="ID_Model" ColumnName="ID_Model" />
                 <ScalarProperty Name="SelfCostModel" ColumnName="SelfCostModel" />
-                <ScalarProperty Name="ProductionCost" ColumnName="ProductionCost" />
+                <ScalarProperty Name="ProductionCost1" ColumnName="ProductionCost" />
                 <ScalarProperty Name="SellCost" ColumnName="SellCost" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1241,6 +1291,19 @@
                 <ScalarProperty Name="ID_SizeTable" ColumnName="ID_SizeTable" />
                 <ScalarProperty Name="ID_Size" ColumnName="ID_Size" />
                 <ScalarProperty Name="ID_Model" ColumnName="ID_Model" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="ID_Staff" ColumnName="ID_Staff" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="ID_Group" ColumnName="ID_Group" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1287,13 +1350,8 @@
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="E_mail" ColumnName="E_mail" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="Сonfirmed" ColumnName="Сonfirmed" />
-                <ScalarProperty Name="ID_Group" ColumnName="ID_Group" />
+                <ScalarProperty Name="ID_Staff" ColumnName="ID_Staff" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

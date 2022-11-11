@@ -14,26 +14,13 @@ namespace ConsoleAppForSHA256.Models
     
     public partial class User
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
-        {
-            this.Post = new HashSet<Post>();
-        }
-    
         public int ID_User { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public string E_mail { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Patronymic { get; set; }
-        public string PhoneNumber { get; set; }
-        public Nullable<System.DateTime> DateOfBirth { get; set; }
         public string Сonfirmed { get; set; }
-        public Nullable<int> ID_Group { get; set; }
+        public int ID_Staff { get; set; }
     
-        public virtual Group Group { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Post> Post { get; set; }
+        public virtual Staff Staff { get; set; }
     }
 }

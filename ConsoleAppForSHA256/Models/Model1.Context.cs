@@ -35,10 +35,11 @@ namespace ConsoleAppForSHA256.Models
         public virtual DbSet<OrderList> OrderList { get; set; }
         public virtual DbSet<Pattern> Pattern { get; set; }
         public virtual DbSet<Post> Post { get; set; }
-        public virtual DbSet<ProductionCosts> ProductionCosts { get; set; }
+        public virtual DbSet<ProductionCost> ProductionCost { get; set; }
         public virtual DbSet<RecyclingCompany> RecyclingCompany { get; set; }
         public virtual DbSet<Size> Size { get; set; }
         public virtual DbSet<SizeTable> SizeTable { get; set; }
+        public virtual DbSet<Staff> Staff { get; set; }
         public virtual DbSet<Structure> Structure { get; set; }
         public virtual DbSet<SupplierCompani> SupplierCompani { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
