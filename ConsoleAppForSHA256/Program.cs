@@ -1,7 +1,9 @@
 ﻿using ClassLibraryForSamWork1;
 using ConsoleAppForSHA256.Models;
 using System;
+using System.Data.Entity.Infrastructure;
 using System.Globalization;
+using System.Net;
 using System.Text.RegularExpressions;
 
 namespace ConsoleAppForSHA256
@@ -44,7 +46,7 @@ namespace ConsoleAppForSHA256
 
             try
             {
-                Staff s1 = new Staff {ID_Staff = id_staff, Name = nameStaff, Surname =surnameStaff, Patronymic = patrStaff, PhoneNumber = phoneStaff, DateOfBirth = bzdStaff, ID_Group = Convert.ToInt32(idGroup)};
+                Staff s1 = new Staff {ID_Staff = id_staff, Name = nameStaff, Surname = surnameStaff, Patronymic = patrStaff, PhoneNumber = phoneStaff, DateOfBirth = bzdStaff, ID_Group = Convert.ToInt32(idGroup)};
                 helperCreate.CreateStaff(s1);
                 Console.WriteLine("Данные успешно записанны...");
             }
@@ -53,12 +55,13 @@ namespace ConsoleAppForSHA256
                 Console.WriteLine("Не удалось записать данные в базу");
             }
 
-            Console.Write("Желаете стать пользователем системы? y/n");
+            Console.Write("Желаете стать пользователем системы? y/n : ");
             string outStr = Console.ReadLine();
             if (outStr == "y")
             {
                 Console.Write("Введите логин: ");
                 string loginn = CheckInput(Convert.ToString(Console.ReadLine()), "логин");
+                helperCreate.CheckUserData(loginn);
 
                 Console.Write("Введите пароль: ");
                 string pass = CheckInput(Convert.ToString(Console.ReadLine()), "пароль");
@@ -142,6 +145,7 @@ namespace ConsoleAppForSHA256
                     return eMail;
                 }
             }
+            
         }
     }
 }
