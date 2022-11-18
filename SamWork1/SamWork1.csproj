@@ -35,8 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,20 +64,137 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ManagerPanel.xaml.cs">
+      <DependentUpon>ManagerPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModelTechnologyPanel.xaml.cs">
+      <DependentUpon>ModelTechnologyPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SkladWorkerPanel.xaml.cs">
+      <DependentUpon>SkladWorkerPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZakroishikPanel.xaml.cs">
+      <DependentUpon>ZakroishikPanel.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AdminPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AdminPanel.xaml.cs">
+      <DependentUpon>AdminPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataBaseFuncs.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ManagerPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModelTechnologyPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SkladWorkerPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ZakroishikPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Change.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feedback.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Group.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Material.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MaterialApplication.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderList.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pattern.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Post.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductionCost.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RecyclingCompany.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShoesFactory.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShoesFactory.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShoesFactory.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShoesFactory.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShoesFactory.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Size.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SizeTable.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Staff.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Structure.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SupplierCompani.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TypeFB.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WasteRequest.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Wastes.cs">
+      <DependentUpon>ShoesFactory.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,6 +212,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Models\ShoesFactory.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ShoesFactory.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\ShoesFactory.edmx.diagram">
+      <DependentUpon>ShoesFactory.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,6 +227,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\ShoesFactory.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ShoesFactory.Context.cs</LastGenOutput>
+      <DependentUpon>ShoesFactory.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\ShoesFactory.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShoesFactory.edmx</DependentUpon>
+      <LastGenOutput>ShoesFactory.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibraryForSamWork1\ClassLibraryForSamWork1.csproj">
+      <Project>{792DEB19-A63A-44E0-8E0B-2FB60201974E}</Project>
+      <Name>ClassLibraryForSamWork1</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

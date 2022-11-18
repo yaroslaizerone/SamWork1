@@ -1,0 +1,1401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ShoesFactoryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Change">
+          <Key>
+            <PropertyRef Name="ID_Change" />
+          </Key>
+          <Property Name="ID_Change" Type="int" Nullable="false" />
+          <Property Name="ID_Patern" Type="int" Nullable="false" />
+          <Property Name="ID_Group" Type="int" Nullable="false" />
+          <Property Name="NumWorkshop" Type="int" />
+          <Property Name="QuantityShoes" Type="int" />
+          <Property Name="DateChange" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="ID_Feedback" />
+          </Key>
+          <Property Name="ID_Feedback" Type="int" Nullable="false" />
+          <Property Name="Author" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Text" Type="text" Nullable="false" />
+          <Property Name="ContactDetails" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_TypeFB" Type="int" Nullable="false" />
+          <Property Name="ID_Order" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="ID_Group" />
+          </Key>
+          <Property Name="ID_Group" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="ID_Material" />
+          </Key>
+          <Property Name="ID_Material" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Quality" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MaterialApplication">
+          <Key>
+            <PropertyRef Name="ID_MaterialApplication" />
+          </Key>
+          <Property Name="ID_MaterialApplication" Type="int" Nullable="false" />
+          <Property Name="ID_Material" Type="int" Nullable="false" />
+          <Property Name="ID_SupplierCompani" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="ID_Model" />
+          </Key>
+          <Property Name="ID_Model" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateCreate" Type="date" Nullable="false" />
+          <Property Name="Season" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Shoelaces" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Heel" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tongue" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_Structure" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID_Order" />
+          </Key>
+          <Property Name="ID_Order" Type="int" Nullable="false" />
+          <Property Name="NameCustomer" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DeadLine" Type="date" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderList">
+          <Key>
+            <PropertyRef Name="ID_OrderList" />
+          </Key>
+          <Property Name="ID_OrderList" Type="int" Nullable="false" />
+          <Property Name="ID_Order" Type="int" Nullable="false" />
+          <Property Name="ID_Model" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pattern">
+          <Key>
+            <PropertyRef Name="ID_Patern" />
+          </Key>
+          <Property Name="ID_Patern" Type="int" Nullable="false" />
+          <Property Name="ID_Model" Type="int" Nullable="false" />
+          <Property Name="Readinnes" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="ID_Post" />
+          </Key>
+          <Property Name="ID_Post" Type="int" Nullable="false" />
+          <Property Name="ID_Staff" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductionCost">
+          <Key>
+            <PropertyRef Name="ID_ProductionCosts" />
+          </Key>
+          <Property Name="ID_ProductionCosts" Type="int" Nullable="false" />
+          <Property Name="ID_Model" Type="int" Nullable="false" />
+          <Property Name="SelfCostModel" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ProductionCost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SellCost" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="RecyclingCompany">
+          <Key>
+            <PropertyRef Name="ID_RecyclingCompany" />
+          </Key>
+          <Property Name="ID_RecyclingCompany" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DefectiveCost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="WasteCost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="ID_Size" />
+          </Key>
+          <Property Name="ID_Size" Type="int" Nullable="false" />
+          <Property Name="HeelHeight" Type="int" Nullable="false" />
+          <Property Name="ShoeWidth" Type="int" Nullable="false" />
+          <Property Name="ShoeLength" Type="int" Nullable="false" />
+          <Property Name="TongueLength" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SizeTable">
+          <Key>
+            <PropertyRef Name="ID_SizeTable" />
+          </Key>
+          <Property Name="ID_SizeTable" Type="int" Nullable="false" />
+          <Property Name="ID_Size" Type="int" Nullable="false" />
+          <Property Name="ID_Model" Type="int" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="ID_Staff" />
+          </Key>
+          <Property Name="ID_Staff" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="ID_Group" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Structure">
+          <Key>
+            <PropertyRef Name="ID_Structure" />
+          </Key>
+          <Property Name="ID_Structure" Type="int" Nullable="false" />
+          <Property Name="ID_Material" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SupplierCompani">
+          <Key>
+            <PropertyRef Name="ID_SupplierCompani" />
+          </Key>
+          <Property Name="ID_SupplierCompani" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Reliability" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TypeFB">
+          <Key>
+            <PropertyRef Name="ID_TypeFB" />
+          </Key>
+          <Property Name="ID_TypeFB" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="int" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="text" Nullable="false" />
+          <Property Name="E_mail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Сonfirmed" Type="char" MaxLength="1" />
+          <Property Name="ID_Staff" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WasteRequest">
+          <Key>
+            <PropertyRef Name="ID_WasteRequest" />
+          </Key>
+          <Property Name="ID_WasteRequest" Type="int" Nullable="false" />
+          <Property Name="ID_RecyclingCompany" Type="int" Nullable="false" />
+          <Property Name="ID_Wastes" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Wastes">
+          <Key>
+            <PropertyRef Name="ID_Wastes" />
+          </Key>
+          <Property Name="ID_Wastes" Type="int" Nullable="false" />
+          <Property Name="ID_Model" Type="int" Nullable="false" />
+          <Property Name="QuantityWasted" Type="int" Nullable="false" />
+          <Property Name="QuantityMarriage" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Change_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Change" Type="Self.Change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID_Group" />
+            </Principal>
+            <Dependent Role="Change">
+              <PropertyRef Name="ID_Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Change_Pattern">
+          <End Role="Pattern" Type="Self.Pattern" Multiplicity="1" />
+          <End Role="Change" Type="Self.Change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pattern">
+              <PropertyRef Name="ID_Patern" />
+            </Principal>
+            <Dependent Role="Change">
+              <PropertyRef Name="ID_Patern" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID_Order" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="ID_Order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_TypeFB">
+          <End Role="TypeFB" Type="Self.TypeFB" Multiplicity="1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeFB">
+              <PropertyRef Name="ID_TypeFB" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="ID_TypeFB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaterialApplication_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="MaterialApplication" Type="Self.MaterialApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="ID_Material" />
+            </Principal>
+            <Dependent Role="MaterialApplication">
+              <PropertyRef Name="ID_Material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaterialApplication_SupplierCompani">
+          <End Role="SupplierCompani" Type="Self.SupplierCompani" Multiplicity="1" />
+          <End Role="MaterialApplication" Type="Self.MaterialApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupplierCompani">
+              <PropertyRef Name="ID_SupplierCompani" />
+            </Principal>
+            <Dependent Role="MaterialApplication">
+              <PropertyRef Name="ID_SupplierCompani" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Model_Structure">
+          <End Role="Structure" Type="Self.Structure" Multiplicity="1" />
+          <End Role="Model" Type="Self.Model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Structure">
+              <PropertyRef Name="ID_Structure" />
+            </Principal>
+            <Dependent Role="Model">
+              <PropertyRef Name="ID_Structure" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderList_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="OrderList" Type="Self.OrderList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="ID_Model" />
+            </Principal>
+            <Dependent Role="OrderList">
+              <PropertyRef Name="ID_Model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderList_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderList" Type="Self.OrderList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID_Order" />
+            </Principal>
+            <Dependent Role="OrderList">
+              <PropertyRef Name="ID_Order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pattern_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="Pattern" Type="Self.Pattern" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="ID_Model" />
+            </Principal>
+            <Dependent Role="Pattern">
+              <PropertyRef Name="ID_Model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Post_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID_Staff" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="ID_Staff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductionCosts_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="ProductionCost" Type="Self.ProductionCost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="ID_Model" />
+            </Principal>
+            <Dependent Role="ProductionCost">
+              <PropertyRef Name="ID_Model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SizeTable_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="0..1" />
+          <End Role="SizeTable" Type="Self.SizeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="ID_Model" />
+            </Principal>
+            <Dependent Role="SizeTable">
+              <PropertyRef Name="ID_Model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SizeTable_Size">
+          <End Role="Size" Type="Self.Size" Multiplicity="1" />
+          <End Role="SizeTable" Type="Self.SizeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Size">
+              <PropertyRef Name="ID_Size" />
+            </Principal>
+            <Dependent Role="SizeTable">
+              <PropertyRef Name="ID_Size" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID_Group" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="ID_Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Structure_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="Structure" Type="Self.Structure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="ID_Material" />
+            </Principal>
+            <Dependent Role="Structure">
+              <PropertyRef Name="ID_Material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID_Staff" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ID_Staff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WasteRequest_RecyclingCompany">
+          <End Role="RecyclingCompany" Type="Self.RecyclingCompany" Multiplicity="1" />
+          <End Role="WasteRequest" Type="Self.WasteRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecyclingCompany">
+              <PropertyRef Name="ID_RecyclingCompany" />
+            </Principal>
+            <Dependent Role="WasteRequest">
+              <PropertyRef Name="ID_RecyclingCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WasteRequest_Wastes">
+          <End Role="Wastes" Type="Self.Wastes" Multiplicity="1" />
+          <End Role="WasteRequest" Type="Self.WasteRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wastes">
+              <PropertyRef Name="ID_Wastes" />
+            </Principal>
+            <Dependent Role="WasteRequest">
+              <PropertyRef Name="ID_Wastes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wastes_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="Wastes" Type="Self.Wastes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="ID_Model" />
+            </Principal>
+            <Dependent Role="Wastes">
+              <PropertyRef Name="ID_Model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ShoesFactoryModelContainer">
+          <EntitySet Name="Change" EntityType="Self.Change" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaterialApplication" EntityType="Self.MaterialApplication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderList" EntityType="Self.OrderList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pattern" EntityType="Self.Pattern" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductionCost" EntityType="Self.ProductionCost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RecyclingCompany" EntityType="Self.RecyclingCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SizeTable" EntityType="Self.SizeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Structure" EntityType="Self.Structure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupplierCompani" EntityType="Self.SupplierCompani" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeFB" EntityType="Self.TypeFB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WasteRequest" EntityType="Self.WasteRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wastes" EntityType="Self.Wastes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Change_Group" Association="Self.FK_Change_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Change" EntitySet="Change" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Change_Pattern" Association="Self.FK_Change_Pattern">
+            <End Role="Pattern" EntitySet="Pattern" />
+            <End Role="Change" EntitySet="Change" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_Order" Association="Self.FK_Feedback_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_TypeFB" Association="Self.FK_Feedback_TypeFB">
+            <End Role="TypeFB" EntitySet="TypeFB" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaterialApplication_Material" Association="Self.FK_MaterialApplication_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="MaterialApplication" EntitySet="MaterialApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaterialApplication_SupplierCompani" Association="Self.FK_MaterialApplication_SupplierCompani">
+            <End Role="SupplierCompani" EntitySet="SupplierCompani" />
+            <End Role="MaterialApplication" EntitySet="MaterialApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Model_Structure" Association="Self.FK_Model_Structure">
+            <End Role="Structure" EntitySet="Structure" />
+            <End Role="Model" EntitySet="Model" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderList_Model" Association="Self.FK_OrderList_Model">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="OrderList" EntitySet="OrderList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderList_Order" Association="Self.FK_OrderList_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderList" EntitySet="OrderList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pattern_Model" Association="Self.FK_Pattern_Model">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="Pattern" EntitySet="Pattern" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Post_Staff" Association="Self.FK_Post_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductionCosts_Model" Association="Self.FK_ProductionCosts_Model">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="ProductionCost" EntitySet="ProductionCost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SizeTable_Model" Association="Self.FK_SizeTable_Model">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="SizeTable" EntitySet="SizeTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SizeTable_Size" Association="Self.FK_SizeTable_Size">
+            <End Role="Size" EntitySet="Size" />
+            <End Role="SizeTable" EntitySet="SizeTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Group" Association="Self.FK_Staff_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Structure_Material" Association="Self.FK_Structure_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="Structure" EntitySet="Structure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Staff" Association="Self.FK_User_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WasteRequest_RecyclingCompany" Association="Self.FK_WasteRequest_RecyclingCompany">
+            <End Role="RecyclingCompany" EntitySet="RecyclingCompany" />
+            <End Role="WasteRequest" EntitySet="WasteRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WasteRequest_Wastes" Association="Self.FK_WasteRequest_Wastes">
+            <End Role="Wastes" EntitySet="Wastes" />
+            <End Role="WasteRequest" EntitySet="WasteRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wastes_Model" Association="Self.FK_Wastes_Model">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="Wastes" EntitySet="Wastes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShoesFactoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Change">
+          <Key>
+            <PropertyRef Name="ID_Change" />
+          </Key>
+          <Property Name="ID_Change" Type="Int32" Nullable="false" />
+          <Property Name="ID_Patern" Type="Int32" Nullable="false" />
+          <Property Name="ID_Group" Type="Int32" Nullable="false" />
+          <Property Name="NumWorkshop" Type="Int32" />
+          <Property Name="QuantityShoes" Type="Int32" />
+          <Property Name="DateChange" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_Change_Group" FromRole="Change" ToRole="Group" />
+          <NavigationProperty Name="Pattern" Relationship="Self.FK_Change_Pattern" FromRole="Change" ToRole="Pattern" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="ID_Feedback" />
+          </Key>
+          <Property Name="ID_Feedback" Type="Int32" Nullable="false" />
+          <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContactDetails" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_TypeFB" Type="Int32" Nullable="false" />
+          <Property Name="ID_Order" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Feedback_Order" FromRole="Feedback" ToRole="Order" />
+          <NavigationProperty Name="TypeFB" Relationship="Self.FK_Feedback_TypeFB" FromRole="Feedback" ToRole="TypeFB" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="ID_Group" />
+          </Key>
+          <Property Name="ID_Group" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Change" Relationship="Self.FK_Change_Group" FromRole="Group" ToRole="Change" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Staff_Group" FromRole="Group" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="ID_Material" />
+          </Key>
+          <Property Name="ID_Material" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Quality" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MaterialApplication" Relationship="Self.FK_MaterialApplication_Material" FromRole="Material" ToRole="MaterialApplication" />
+          <NavigationProperty Name="Structure" Relationship="Self.FK_Structure_Material" FromRole="Material" ToRole="Structure" />
+        </EntityType>
+        <EntityType Name="MaterialApplication">
+          <Key>
+            <PropertyRef Name="ID_MaterialApplication" />
+          </Key>
+          <Property Name="ID_MaterialApplication" Type="Int32" Nullable="false" />
+          <Property Name="ID_Material" Type="Int32" Nullable="false" />
+          <Property Name="ID_SupplierCompani" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Material" Relationship="Self.FK_MaterialApplication_Material" FromRole="MaterialApplication" ToRole="Material" />
+          <NavigationProperty Name="SupplierCompani" Relationship="Self.FK_MaterialApplication_SupplierCompani" FromRole="MaterialApplication" ToRole="SupplierCompani" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="ID_Model" />
+          </Key>
+          <Property Name="ID_Model" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Season" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Shoelaces" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Heel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tongue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Structure" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Structure" Relationship="Self.FK_Model_Structure" FromRole="Model" ToRole="Structure" />
+          <NavigationProperty Name="OrderList" Relationship="Self.FK_OrderList_Model" FromRole="Model" ToRole="OrderList" />
+          <NavigationProperty Name="Pattern" Relationship="Self.FK_Pattern_Model" FromRole="Model" ToRole="Pattern" />
+          <NavigationProperty Name="ProductionCost" Relationship="Self.FK_ProductionCosts_Model" FromRole="Model" ToRole="ProductionCost" />
+          <NavigationProperty Name="SizeTable" Relationship="Self.FK_SizeTable_Model" FromRole="Model" ToRole="SizeTable" />
+          <NavigationProperty Name="Wastes" Relationship="Self.FK_Wastes_Model" FromRole="Model" ToRole="Wastes" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID_Order" />
+          </Key>
+          <Property Name="ID_Order" Type="Int32" Nullable="false" />
+          <Property Name="NameCustomer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DeadLine" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Feedback" Relationship="Self.FK_Feedback_Order" FromRole="Order" ToRole="Feedback" />
+          <NavigationProperty Name="OrderList" Relationship="Self.FK_OrderList_Order" FromRole="Order" ToRole="OrderList" />
+        </EntityType>
+        <EntityType Name="OrderList">
+          <Key>
+            <PropertyRef Name="ID_OrderList" />
+          </Key>
+          <Property Name="ID_OrderList" Type="Int32" Nullable="false" />
+          <Property Name="ID_Order" Type="Int32" Nullable="false" />
+          <Property Name="ID_Model" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Model" Relationship="Self.FK_OrderList_Model" FromRole="OrderList" ToRole="Model" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderList_Order" FromRole="OrderList" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Pattern">
+          <Key>
+            <PropertyRef Name="ID_Patern" />
+          </Key>
+          <Property Name="ID_Patern" Type="Int32" Nullable="false" />
+          <Property Name="ID_Model" Type="Int32" Nullable="false" />
+          <Property Name="Readinnes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Change" Relationship="Self.FK_Change_Pattern" FromRole="Pattern" ToRole="Change" />
+          <NavigationProperty Name="Model" Relationship="Self.FK_Pattern_Model" FromRole="Pattern" ToRole="Model" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="ID_Post" />
+          </Key>
+          <Property Name="ID_Post" Type="Int32" Nullable="false" />
+          <Property Name="ID_Staff" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Post_Staff" FromRole="Post" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="ProductionCost">
+          <Key>
+            <PropertyRef Name="ID_ProductionCosts" />
+          </Key>
+          <Property Name="ID_ProductionCosts" Type="Int32" Nullable="false" />
+          <Property Name="ID_Model" Type="Int32" Nullable="false" />
+          <Property Name="SelfCostModel" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ProductionCost1" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SellCost" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Model" Relationship="Self.FK_ProductionCosts_Model" FromRole="ProductionCost" ToRole="Model" />
+        </EntityType>
+        <EntityType Name="RecyclingCompany">
+          <Key>
+            <PropertyRef Name="ID_RecyclingCompany" />
+          </Key>
+          <Property Name="ID_RecyclingCompany" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DefectiveCost" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="WasteCost" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="WasteRequest" Relationship="Self.FK_WasteRequest_RecyclingCompany" FromRole="RecyclingCompany" ToRole="WasteRequest" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="ID_Size" />
+          </Key>
+          <Property Name="ID_Size" Type="Int32" Nullable="false" />
+          <Property Name="HeelHeight" Type="Int32" Nullable="false" />
+          <Property Name="ShoeWidth" Type="Int32" Nullable="false" />
+          <Property Name="ShoeLength" Type="Int32" Nullable="false" />
+          <Property Name="TongueLength" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SizeTable" Relationship="Self.FK_SizeTable_Size" FromRole="Size" ToRole="SizeTable" />
+        </EntityType>
+        <EntityType Name="SizeTable">
+          <Key>
+            <PropertyRef Name="ID_SizeTable" />
+          </Key>
+          <Property Name="ID_SizeTable" Type="Int32" Nullable="false" />
+          <Property Name="ID_Size" Type="Int32" Nullable="false" />
+          <Property Name="ID_Model" Type="Int32" />
+          <NavigationProperty Name="Model" Relationship="Self.FK_SizeTable_Model" FromRole="SizeTable" ToRole="Model" />
+          <NavigationProperty Name="Size" Relationship="Self.FK_SizeTable_Size" FromRole="SizeTable" ToRole="Size" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="ID_Staff" />
+          </Key>
+          <Property Name="ID_Staff" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="ID_Group" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_Staff_Group" FromRole="Staff" ToRole="Group" />
+          <NavigationProperty Name="Post" Relationship="Self.FK_Post_Staff" FromRole="Staff" ToRole="Post" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Staff" FromRole="Staff" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Structure">
+          <Key>
+            <PropertyRef Name="ID_Structure" />
+          </Key>
+          <Property Name="ID_Structure" Type="Int32" Nullable="false" />
+          <Property Name="ID_Material" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Material" Relationship="Self.FK_Structure_Material" FromRole="Structure" ToRole="Material" />
+          <NavigationProperty Name="Model" Relationship="Self.FK_Model_Structure" FromRole="Structure" ToRole="Model" />
+        </EntityType>
+        <EntityType Name="SupplierCompani">
+          <Key>
+            <PropertyRef Name="ID_SupplierCompani" />
+          </Key>
+          <Property Name="ID_SupplierCompani" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Reliability" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MaterialApplication" Relationship="Self.FK_MaterialApplication_SupplierCompani" FromRole="SupplierCompani" ToRole="MaterialApplication" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TypeFB">
+          <Key>
+            <PropertyRef Name="ID_TypeFB" />
+          </Key>
+          <Property Name="ID_TypeFB" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Feedback" Relationship="Self.FK_Feedback_TypeFB" FromRole="TypeFB" ToRole="Feedback" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="E_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Сonfirmed" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ID_Staff" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_User_Staff" FromRole="User" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="WasteRequest">
+          <Key>
+            <PropertyRef Name="ID_WasteRequest" />
+          </Key>
+          <Property Name="ID_WasteRequest" Type="Int32" Nullable="false" />
+          <Property Name="ID_RecyclingCompany" Type="Int32" Nullable="false" />
+          <Property Name="ID_Wastes" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="RecyclingCompany" Relationship="Self.FK_WasteRequest_RecyclingCompany" FromRole="WasteRequest" ToRole="RecyclingCompany" />
+          <NavigationProperty Name="Wastes" Relationship="Self.FK_WasteRequest_Wastes" FromRole="WasteRequest" ToRole="Wastes" />
+        </EntityType>
+        <EntityType Name="Wastes">
+          <Key>
+            <PropertyRef Name="ID_Wastes" />
+          </Key>
+          <Property Name="ID_Wastes" Type="Int32" Nullable="false" />
+          <Property Name="ID_Model" Type="Int32" Nullable="false" />
+          <Property Name="QuantityWasted" Type="Int32" Nullable="false" />
+          <Property Name="QuantityMarriage" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Model" Relationship="Self.FK_Wastes_Model" FromRole="Wastes" ToRole="Model" />
+          <NavigationProperty Name="WasteRequest" Relationship="Self.FK_WasteRequest_Wastes" FromRole="Wastes" ToRole="WasteRequest" />
+        </EntityType>
+        <Association Name="FK_Change_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Change" Type="Self.Change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID_Group" />
+            </Principal>
+            <Dependent Role="Change">
+              <PropertyRef Name="ID_Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Change_Pattern">
+          <End Role="Pattern" Type="Self.Pattern" Multiplicity="1" />
+          <End Role="Change" Type="Self.Change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pattern">
+              <PropertyRef Name="ID_Patern" />
+            </Principal>
+            <Dependent Role="Change">
+              <PropertyRef Name="ID_Patern" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID_Order" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="ID_Order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_TypeFB">
+          <End Role="TypeFB" Type="Self.TypeFB" Multiplicity="1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeFB">
+              <PropertyRef Name="ID_TypeFB" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="ID_TypeFB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID_Group" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="ID_Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaterialApplication_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="MaterialApplication" Type="Self.MaterialApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="ID_Material" />
+            </Principal>
+            <Dependent Role="MaterialApplication">
+              <PropertyRef Name="ID_Material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Structure_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="Structure" Type="Self.Structure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="ID_Material" />
+            </Principal>
+            <Dependent Role="Structure">
+              <PropertyRef Name="ID_Material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaterialApplication_SupplierCompani">
+          <End Role="SupplierCompani" Type="Self.SupplierCompani" Multiplicity="1" />
+          <End Role="MaterialApplication" Type="Self.MaterialApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupplierCompani">
+              <PropertyRef Name="ID_SupplierCompani" />
+            </Principal>
+            <Dependent Role="MaterialApplication">
+              <PropertyRef Name="ID_SupplierCompani" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Model_Structure">
+          <End Role="Structure" Type="Self.Structure" Multiplicity="1" />
+          <End Role="Model" Type="Self.Model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Structure">
+              <PropertyRef Name="ID_Structure" />
+            </Principal>
+            <Dependent Role="Model">
+              <PropertyRef Name="ID_Structure" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderList_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="OrderList" Type="Self.OrderList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="ID_Model" />
+            </Principal>
+            <Dependent Role="OrderList">
+              <PropertyRef Name="ID_Model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pattern_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="Pattern" Type="Self.Pattern" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="ID_Model" />
+            </Principal>
+            <Dependent Role="Pattern">
+              <PropertyRef Name="ID_Model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductionCosts_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="ProductionCost" Type="Self.ProductionCost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="ID_Model" />
+            </Principal>
+            <Dependent Role="ProductionCost">
+              <PropertyRef Name="ID_Model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SizeTable_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="0..1" />
+          <End Role="SizeTable" Type="Self.SizeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="ID_Model" />
+            </Principal>
+            <Dependent Role="SizeTable">
+              <PropertyRef Name="ID_Model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wastes_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="Wastes" Type="Self.Wastes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="ID_Model" />
+            </Principal>
+            <Dependent Role="Wastes">
+              <PropertyRef Name="ID_Model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderList_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderList" Type="Self.OrderList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID_Order" />
+            </Principal>
+            <Dependent Role="OrderList">
+              <PropertyRef Name="ID_Order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Post_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID_Staff" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="ID_Staff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WasteRequest_RecyclingCompany">
+          <End Role="RecyclingCompany" Type="Self.RecyclingCompany" Multiplicity="1" />
+          <End Role="WasteRequest" Type="Self.WasteRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecyclingCompany">
+              <PropertyRef Name="ID_RecyclingCompany" />
+            </Principal>
+            <Dependent Role="WasteRequest">
+              <PropertyRef Name="ID_RecyclingCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SizeTable_Size">
+          <End Role="Size" Type="Self.Size" Multiplicity="1" />
+          <End Role="SizeTable" Type="Self.SizeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Size">
+              <PropertyRef Name="ID_Size" />
+            </Principal>
+            <Dependent Role="SizeTable">
+              <PropertyRef Name="ID_Size" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID_Staff" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ID_Staff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WasteRequest_Wastes">
+          <End Role="Wastes" Type="Self.Wastes" Multiplicity="1" />
+          <End Role="WasteRequest" Type="Self.WasteRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wastes">
+              <PropertyRef Name="ID_Wastes" />
+            </Principal>
+            <Dependent Role="WasteRequest">
+              <PropertyRef Name="ID_Wastes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShoesFactoryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Change" EntityType="Self.Change" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" />
+          <EntitySet Name="Group" EntityType="Self.Group" />
+          <EntitySet Name="Material" EntityType="Self.Material" />
+          <EntitySet Name="MaterialApplication" EntityType="Self.MaterialApplication" />
+          <EntitySet Name="Model" EntityType="Self.Model" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="OrderList" EntityType="Self.OrderList" />
+          <EntitySet Name="Pattern" EntityType="Self.Pattern" />
+          <EntitySet Name="Post" EntityType="Self.Post" />
+          <EntitySet Name="ProductionCost" EntityType="Self.ProductionCost" />
+          <EntitySet Name="RecyclingCompany" EntityType="Self.RecyclingCompany" />
+          <EntitySet Name="Size" EntityType="Self.Size" />
+          <EntitySet Name="SizeTable" EntityType="Self.SizeTable" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" />
+          <EntitySet Name="Structure" EntityType="Self.Structure" />
+          <EntitySet Name="SupplierCompani" EntityType="Self.SupplierCompani" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TypeFB" EntityType="Self.TypeFB" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="WasteRequest" EntityType="Self.WasteRequest" />
+          <EntitySet Name="Wastes" EntityType="Self.Wastes" />
+          <AssociationSet Name="FK_Change_Group" Association="Self.FK_Change_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Change" EntitySet="Change" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Change_Pattern" Association="Self.FK_Change_Pattern">
+            <End Role="Pattern" EntitySet="Pattern" />
+            <End Role="Change" EntitySet="Change" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_Order" Association="Self.FK_Feedback_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_TypeFB" Association="Self.FK_Feedback_TypeFB">
+            <End Role="TypeFB" EntitySet="TypeFB" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Group" Association="Self.FK_Staff_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaterialApplication_Material" Association="Self.FK_MaterialApplication_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="MaterialApplication" EntitySet="MaterialApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Structure_Material" Association="Self.FK_Structure_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="Structure" EntitySet="Structure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaterialApplication_SupplierCompani" Association="Self.FK_MaterialApplication_SupplierCompani">
+            <End Role="SupplierCompani" EntitySet="SupplierCompani" />
+            <End Role="MaterialApplication" EntitySet="MaterialApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Model_Structure" Association="Self.FK_Model_Structure">
+            <End Role="Structure" EntitySet="Structure" />
+            <End Role="Model" EntitySet="Model" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderList_Model" Association="Self.FK_OrderList_Model">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="OrderList" EntitySet="OrderList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pattern_Model" Association="Self.FK_Pattern_Model">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="Pattern" EntitySet="Pattern" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductionCosts_Model" Association="Self.FK_ProductionCosts_Model">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="ProductionCost" EntitySet="ProductionCost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SizeTable_Model" Association="Self.FK_SizeTable_Model">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="SizeTable" EntitySet="SizeTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wastes_Model" Association="Self.FK_Wastes_Model">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="Wastes" EntitySet="Wastes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderList_Order" Association="Self.FK_OrderList_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderList" EntitySet="OrderList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Post_Staff" Association="Self.FK_Post_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WasteRequest_RecyclingCompany" Association="Self.FK_WasteRequest_RecyclingCompany">
+            <End Role="RecyclingCompany" EntitySet="RecyclingCompany" />
+            <End Role="WasteRequest" EntitySet="WasteRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SizeTable_Size" Association="Self.FK_SizeTable_Size">
+            <End Role="Size" EntitySet="Size" />
+            <End Role="SizeTable" EntitySet="SizeTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Staff" Association="Self.FK_User_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WasteRequest_Wastes" Association="Self.FK_WasteRequest_Wastes">
+            <End Role="Wastes" EntitySet="Wastes" />
+            <End Role="WasteRequest" EntitySet="WasteRequest" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ShoesFactoryModelContainer" CdmEntityContainer="ShoesFactoryEntities">
+          <EntitySetMapping Name="Change">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.Change">
+              <MappingFragment StoreEntitySet="Change">
+                <ScalarProperty Name="ID_Change" ColumnName="ID_Change" />
+                <ScalarProperty Name="ID_Patern" ColumnName="ID_Patern" />
+                <ScalarProperty Name="ID_Group" ColumnName="ID_Group" />
+                <ScalarProperty Name="NumWorkshop" ColumnName="NumWorkshop" />
+                <ScalarProperty Name="QuantityShoes" ColumnName="QuantityShoes" />
+                <ScalarProperty Name="DateChange" ColumnName="DateChange" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedback">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="ID_Feedback" ColumnName="ID_Feedback" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ContactDetails" ColumnName="ContactDetails" />
+                <ScalarProperty Name="ID_TypeFB" ColumnName="ID_TypeFB" />
+                <ScalarProperty Name="ID_Order" ColumnName="ID_Order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="ID_Group" ColumnName="ID_Group" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Material">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="ID_Material" ColumnName="ID_Material" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Quality" ColumnName="Quality" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaterialApplication">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.MaterialApplication">
+              <MappingFragment StoreEntitySet="MaterialApplication">
+                <ScalarProperty Name="ID_MaterialApplication" ColumnName="ID_MaterialApplication" />
+                <ScalarProperty Name="ID_Material" ColumnName="ID_Material" />
+                <ScalarProperty Name="ID_SupplierCompani" ColumnName="ID_SupplierCompani" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Model">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.Model">
+              <MappingFragment StoreEntitySet="Model">
+                <ScalarProperty Name="ID_Model" ColumnName="ID_Model" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="Season" ColumnName="Season" />
+                <ScalarProperty Name="Shoelaces" ColumnName="Shoelaces" />
+                <ScalarProperty Name="Heel" ColumnName="Heel" />
+                <ScalarProperty Name="Tongue" ColumnName="Tongue" />
+                <ScalarProperty Name="ID_Structure" ColumnName="ID_Structure" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="ID_Order" ColumnName="ID_Order" />
+                <ScalarProperty Name="NameCustomer" ColumnName="NameCustomer" />
+                <ScalarProperty Name="DeadLine" ColumnName="DeadLine" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderList">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.OrderList">
+              <MappingFragment StoreEntitySet="OrderList">
+                <ScalarProperty Name="ID_OrderList" ColumnName="ID_OrderList" />
+                <ScalarProperty Name="ID_Order" ColumnName="ID_Order" />
+                <ScalarProperty Name="ID_Model" ColumnName="ID_Model" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pattern">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.Pattern">
+              <MappingFragment StoreEntitySet="Pattern">
+                <ScalarProperty Name="ID_Patern" ColumnName="ID_Patern" />
+                <ScalarProperty Name="ID_Model" ColumnName="ID_Model" />
+                <ScalarProperty Name="Readinnes" ColumnName="Readinnes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Post">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="ID_Post" ColumnName="ID_Post" />
+                <ScalarProperty Name="ID_Staff" ColumnName="ID_Staff" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductionCost">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.ProductionCost">
+              <MappingFragment StoreEntitySet="ProductionCost">
+                <ScalarProperty Name="ID_ProductionCosts" ColumnName="ID_ProductionCosts" />
+                <ScalarProperty Name="ID_Model" ColumnName="ID_Model" />
+                <ScalarProperty Name="SelfCostModel" ColumnName="SelfCostModel" />
+                <ScalarProperty Name="ProductionCost1" ColumnName="ProductionCost" />
+                <ScalarProperty Name="SellCost" ColumnName="SellCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecyclingCompany">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.RecyclingCompany">
+              <MappingFragment StoreEntitySet="RecyclingCompany">
+                <ScalarProperty Name="ID_RecyclingCompany" ColumnName="ID_RecyclingCompany" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DefectiveCost" ColumnName="DefectiveCost" />
+                <ScalarProperty Name="WasteCost" ColumnName="WasteCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Size">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.Size">
+              <MappingFragment StoreEntitySet="Size">
+                <ScalarProperty Name="ID_Size" ColumnName="ID_Size" />
+                <ScalarProperty Name="HeelHeight" ColumnName="HeelHeight" />
+                <ScalarProperty Name="ShoeWidth" ColumnName="ShoeWidth" />
+                <ScalarProperty Name="ShoeLength" ColumnName="ShoeLength" />
+                <ScalarProperty Name="TongueLength" ColumnName="TongueLength" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SizeTable">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.SizeTable">
+              <MappingFragment StoreEntitySet="SizeTable">
+                <ScalarProperty Name="ID_SizeTable" ColumnName="ID_SizeTable" />
+                <ScalarProperty Name="ID_Size" ColumnName="ID_Size" />
+                <ScalarProperty Name="ID_Model" ColumnName="ID_Model" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="ID_Staff" ColumnName="ID_Staff" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="ID_Group" ColumnName="ID_Group" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Structure">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.Structure">
+              <MappingFragment StoreEntitySet="Structure">
+                <ScalarProperty Name="ID_Structure" ColumnName="ID_Structure" />
+                <ScalarProperty Name="ID_Material" ColumnName="ID_Material" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupplierCompani">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.SupplierCompani">
+              <MappingFragment StoreEntitySet="SupplierCompani">
+                <ScalarProperty Name="ID_SupplierCompani" ColumnName="ID_SupplierCompani" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Reliability" ColumnName="Reliability" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeFB">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.TypeFB">
+              <MappingFragment StoreEntitySet="TypeFB">
+                <ScalarProperty Name="ID_TypeFB" ColumnName="ID_TypeFB" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="E_mail" ColumnName="E_mail" />
+                <ScalarProperty Name="Сonfirmed" ColumnName="Сonfirmed" />
+                <ScalarProperty Name="ID_Staff" ColumnName="ID_Staff" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WasteRequest">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.WasteRequest">
+              <MappingFragment StoreEntitySet="WasteRequest">
+                <ScalarProperty Name="ID_WasteRequest" ColumnName="ID_WasteRequest" />
+                <ScalarProperty Name="ID_RecyclingCompany" ColumnName="ID_RecyclingCompany" />
+                <ScalarProperty Name="ID_Wastes" ColumnName="ID_Wastes" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wastes">
+            <EntityTypeMapping TypeName="ShoesFactoryModel.Wastes">
+              <MappingFragment StoreEntitySet="Wastes">
+                <ScalarProperty Name="ID_Wastes" ColumnName="ID_Wastes" />
+                <ScalarProperty Name="ID_Model" ColumnName="ID_Model" />
+                <ScalarProperty Name="QuantityWasted" ColumnName="QuantityWasted" />
+                <ScalarProperty Name="QuantityMarriage" ColumnName="QuantityMarriage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -27,10 +27,10 @@
         <TextBlock Grid.Column="2" HorizontalAlignment="Center" Margin="46,60,0,0" TextWrapping="Wrap" Text="Авторизация" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="120"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="41,15,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Логин:" VerticalAlignment="Top" Width="42"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="36,10,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Пароль:" VerticalAlignment="Top" Width="47"/>
-        <TextBox Grid.ColumnSpan="3" Grid.Column="2" HorizontalAlignment="Left" Height="47" Margin="0,1,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="167"/>
-        <PasswordBox Grid.Column="2" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Height="47" Width="166" Grid.ColumnSpan="2"/>
-        <Button Content="Авторизоваться" Grid.Column="1" HorizontalAlignment="Left" Margin="52,17,0,0" Grid.Row="5" VerticalAlignment="Top" Width="107" Grid.ColumnSpan="2"/>
-        <Button Content="Отмена" Grid.Column="3" HorizontalAlignment="Left" Margin="10,17,0,0" Grid.Row="5" VerticalAlignment="Top" Width="107" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="textBoxLogin" Grid.ColumnSpan="3" Grid.Column="2" HorizontalAlignment="Left" Height="47" Margin="0,1,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="167"/>
+        <PasswordBox x:Name="textBoxPassword" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Height="47" Width="166" Grid.ColumnSpan="2"/>
+        <Button x:Name="buttonAuthorization" Content="Авторизоваться" Grid.Column="1" HorizontalAlignment="Left" Margin="52,17,0,0" Grid.Row="5" VerticalAlignment="Top" Width="107" Grid.ColumnSpan="2" Click="buttonAuthorization_Click"/>
+        <Button x:Name="buttonCancel" Content="Отмена" Grid.Column="3" HorizontalAlignment="Left" Margin="10,17,0,0" Grid.Row="5" VerticalAlignment="Top" Width="107" Grid.ColumnSpan="2" Click="buttonCancel_Click"/>
 
     </Grid>
 </Window>

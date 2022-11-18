@@ -86,7 +86,7 @@ namespace ConsoleAppForSHA256
         }
         public void CheckUserData(string login)
         {
-            while(sFirstDBEntities.User.Any(x => x.Login != login))
+            while(sFirstDBEntities.User.Any(x => x.Login == login))
             {
                 Console.WriteLine("Данный пользователь уже существует, введите логин занова: ");
                 login = Convert.ToString(Console.ReadLine());
